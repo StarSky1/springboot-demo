@@ -1,0 +1,15 @@
+#激活使用哪一个配置文件
+spring:
+  profiles:
+    active: dev
+
+boot:
+  name: 湖北
+  location: 武汉
+
+spirng:
+  http:
+    encoding:
+      chaset: utf-8
+      enabled: true
+      force: true
