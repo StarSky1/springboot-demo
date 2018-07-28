@@ -2,14 +2,21 @@
 spring:
   profiles:
     active: dev
+  # 配置jsp页面访问路径的前缀和后缀
+    #前端视图展示采用JSP
+  mvc:
+     view:
+        prefix: /jsp/
+        suffix: .jsp
+  #配置编码过滤器
+  http:
+      encoding:
+          chaset: utf-8
+          enabled: true
+          force: true
+
 
 boot:
   name: 湖北
   location: 武汉
 
-spirng:
-  http:
-    encoding:
-      chaset: utf-8
-      enabled: true
-      force: true
