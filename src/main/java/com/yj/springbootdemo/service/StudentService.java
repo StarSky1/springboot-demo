@@ -7,4 +7,6 @@ import java.util.List;
 public interface StudentService {
 
     List<t_student> getStudents();
+
+    int updateStudent(t_student student);
 }
