@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yj.springbootdemo.dao.t_studentMapper">
+  <resultMap id="BaseResultMap" type="com.yj.springbootdemo.model.t_student">
+    <id column="Sid" jdbcType="INTEGER" property="sid" />
+    <result column="Sname" jdbcType="VARCHAR" property="sname" />
+    <result column="Ssex" jdbcType="VARCHAR" property="ssex" />
+    <result column="Sage" jdbcType="INTEGER" property="sage" />
+    <result column="Sclass" jdbcType="INTEGER" property="sclass" />
+    <result column="Did" jdbcType="INTEGER" property="did" />
+    <result column="Sbir" jdbcType="DATE" property="sbir" />
+    <result column="Sscore" jdbcType="INTEGER" property="sscore" />
+    <result column="Sename" jdbcType="VARCHAR" property="sename" />
+    <result column="Sphone" jdbcType="VARCHAR" property="sphone" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Sid, Sname, Ssex, Sage, Sclass, Did, Sbir, Sscore, Sename, Sphone
+  </sql>
+
+  <select id="getStudents"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_student
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_student
+    where Sid = #{sid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_student
+    where Sid = #{sid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yj.springbootdemo.model.t_student">
+    insert into t_student (Sid, Sname, Ssex, 
+      Sage, Sclass, Did, 
+      Sbir, Sscore, Sename, 
+      Sphone)
+    values (#{sid,jdbcType=INTEGER}, #{sname,jdbcType=VARCHAR}, #{ssex,jdbcType=VARCHAR}, 
+      #{sage,jdbcType=INTEGER}, #{sclass,jdbcType=INTEGER}, #{did,jdbcType=INTEGER}, 
+      #{sbir,jdbcType=DATE}, #{sscore,jdbcType=INTEGER}, #{sename,jdbcType=VARCHAR}, 
+      #{sphone,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yj.springbootdemo.model.t_student">
+    insert into t_student
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sid != null">
+        Sid,
+      </if>
+      <if test="sname != null">
+        Sname,
+      </if>
+      <if test="ssex != null">
+        Ssex,
+      </if>
+      <if test="sage != null">
+        Sage,
+      </if>
+      <if test="sclass != null">
+        Sclass,
+      </if>
+      <if test="did != null">
+        Did,
+      </if>
+      <if test="sbir != null">
+        Sbir,
+      </if>
+      <if test="sscore != null">
+        Sscore,
+      </if>
+      <if test="sename != null">
+        Sename,
+      </if>
+      <if test="sphone != null">
+        Sphone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sid != null">
+        #{sid,jdbcType=INTEGER},
+      </if>
+      <if test="sname != null">
+        #{sname,jdbcType=VARCHAR},
+      </if>
+      <if test="ssex != null">
+        #{ssex,jdbcType=VARCHAR},
+      </if>
+      <if test="sage != null">
+        #{sage,jdbcType=INTEGER},
+      </if>
+      <if test="sclass != null">
+        #{sclass,jdbcType=INTEGER},
+      </if>
+      <if test="did != null">
+        #{did,jdbcType=INTEGER},
+      </if>
+      <if test="sbir != null">
+        #{sbir,jdbcType=DATE},
+      </if>
+      <if test="sscore != null">
+        #{sscore,jdbcType=INTEGER},
+      </if>
+      <if test="sename != null">
+        #{sename,jdbcType=VARCHAR},
+      </if>
+      <if test="sphone != null">
+        #{sphone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yj.springbootdemo.model.t_student">
+    update t_student
+    <set>
+      <if test="sname != null">
+        Sname = #{sname,jdbcType=VARCHAR},
+      </if>
+      <if test="ssex != null">
+        Ssex = #{ssex,jdbcType=VARCHAR},
+      </if>
+      <if test="sage != null">
+        Sage = #{sage,jdbcType=INTEGER},
+      </if>
+      <if test="sclass != null">
+        Sclass = #{sclass,jdbcType=INTEGER},
+      </if>
+      <if test="did != null">
+        Did = #{did,jdbcType=INTEGER},
+      </if>
+      <if test="sbir != null">
+        Sbir = #{sbir,jdbcType=DATE},
+      </if>
+      <if test="sscore != null">
+        Sscore = #{sscore,jdbcType=INTEGER},
+      </if>
+      <if test="sename != null">
+        Sename = #{sename,jdbcType=VARCHAR},
+      </if>
+      <if test="sphone != null">
+        Sphone = #{sphone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Sid = #{sid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yj.springbootdemo.model.t_student">
+    update t_student
+    set Sname = #{sname,jdbcType=VARCHAR},
+      Ssex = #{ssex,jdbcType=VARCHAR},
+      Sage = #{sage,jdbcType=INTEGER},
+      Sclass = #{sclass,jdbcType=INTEGER},
+      Did = #{did,jdbcType=INTEGER},
+      Sbir = #{sbir,jdbcType=DATE},
+      Sscore = #{sscore,jdbcType=INTEGER},
+      Sename = #{sename,jdbcType=VARCHAR},
+      Sphone = #{sphone,jdbcType=VARCHAR}
+    where Sid = #{sid,jdbcType=INTEGER}
+  </update>
+</mapper>

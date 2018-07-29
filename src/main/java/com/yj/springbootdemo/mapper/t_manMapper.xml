@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yj.springbootdemo.dao.t_manMapper">
+  <resultMap id="BaseResultMap" type="com.yj.springbootdemo.model.t_man">
+    <id column="Mid" jdbcType="INTEGER" property="mid" />
+    <result column="Mname" jdbcType="VARCHAR" property="mname" />
+    <result column="Mphone" jdbcType="VARCHAR" property="mphone" />
+    <result column="Mage" jdbcType="INTEGER" property="mage" />
+    <result column="Msex" jdbcType="VARCHAR" property="msex" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Mid, Mname, Mphone, Mage, Msex
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_man
+    where Mid = #{mid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_man
+    where Mid = #{mid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yj.springbootdemo.model.t_man">
+    insert into t_man (Mid, Mname, Mphone, 
+      Mage, Msex)
+    values (#{mid,jdbcType=INTEGER}, #{mname,jdbcType=VARCHAR}, #{mphone,jdbcType=VARCHAR}, 
+      #{mage,jdbcType=INTEGER}, #{msex,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yj.springbootdemo.model.t_man">
+    insert into t_man
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mid != null">
+        Mid,
+      </if>
+      <if test="mname != null">
+        Mname,
+      </if>
+      <if test="mphone != null">
+        Mphone,
+      </if>
+      <if test="mage != null">
+        Mage,
+      </if>
+      <if test="msex != null">
+        Msex,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mid != null">
+        #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="mname != null">
+        #{mname,jdbcType=VARCHAR},
+      </if>
+      <if test="mphone != null">
+        #{mphone,jdbcType=VARCHAR},
+      </if>
+      <if test="mage != null">
+        #{mage,jdbcType=INTEGER},
+      </if>
+      <if test="msex != null">
+        #{msex,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yj.springbootdemo.model.t_man">
+    update t_man
+    <set>
+      <if test="mname != null">
+        Mname = #{mname,jdbcType=VARCHAR},
+      </if>
+      <if test="mphone != null">
+        Mphone = #{mphone,jdbcType=VARCHAR},
+      </if>
+      <if test="mage != null">
+        Mage = #{mage,jdbcType=INTEGER},
+      </if>
+      <if test="msex != null">
+        Msex = #{msex,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Mid = #{mid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yj.springbootdemo.model.t_man">
+    update t_man
+    set Mname = #{mname,jdbcType=VARCHAR},
+      Mphone = #{mphone,jdbcType=VARCHAR},
+      Mage = #{mage,jdbcType=INTEGER},
+      Msex = #{msex,jdbcType=VARCHAR}
+    where Mid = #{mid,jdbcType=INTEGER}
+  </update>
+</mapper>
