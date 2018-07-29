@@ -1,8 +1,9 @@
 package com.yj.springbootdemo.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class t_student {
+public class t_student implements Serializable{
     private Integer sid;
 
     private String sname;

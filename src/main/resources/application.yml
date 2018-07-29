@@ -20,6 +20,11 @@ spring:
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/practice
+  #配置redis缓存数据库
+  redis:
+    host: localhost
+    port: 6379
+
 
 #配置mybatis映射文件所在路径
 mybatis:
