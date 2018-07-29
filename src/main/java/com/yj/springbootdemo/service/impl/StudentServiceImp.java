@@ -28,4 +28,9 @@ public class StudentServiceImp implements StudentService {
         int i=10/0;
         return updateItems;
     }
+
+    @Override
+    public t_student getStudent(int id) {
+        return t_studentMapper.selectByPrimaryKey(id);
+    }
 }

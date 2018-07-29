@@ -9,4 +9,6 @@ public interface StudentService {
     List<t_student> getStudents();
 
     int updateStudent(t_student student);
+
+    t_student getStudent(int id);
 }
