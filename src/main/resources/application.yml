@@ -21,9 +21,14 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/practice
   #配置redis缓存数据库
+#  redis:
+#    host: localhost
+#    port: 6379
+  #redis哨兵模式配置
   redis:
-    host: localhost
-    port: 6379
+    sentinel:
+      master: mymaster
+      nodes: 127.0.0.1:26379,127.0.0.1:26380,127.0.0.1:26381
 
 
 #配置mybatis映射文件所在路径

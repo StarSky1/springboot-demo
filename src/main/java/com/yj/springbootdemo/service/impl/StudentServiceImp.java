@@ -26,13 +26,28 @@ public class StudentServiceImp implements StudentService {
         //使用redis字符串序列化器序列化key
         RedisSerializer redisSerializer=new StringRedisSerializer();
         redisTemplate.setKeySerializer(redisSerializer);
+
+        //高并发条件下，有点问题，缓存会被穿透
         List<t_student> studentList=(List<t_student>) redisTemplate.opsForValue().get("allStudents");
-        //如果redis缓存中没有学生列表数据
-        if(studentList==null){
-            //就查询数据库获取学生列表，并放入缓存中
-            studentList=t_studentMapper.getStudents();
-            redisTemplate.opsForValue().set("allStudents",studentList);
+        //为保证1W人同时访问时，只有一人访问数据库，其他人访问缓存，这里使用双重检测锁
+        if(studentList == null){
+            synchronized(this) {
+                //再次从缓存中获取一下
+                studentList = (List<t_student>) redisTemplate.opsForValue().get("allStudents");
+                //如果redis缓存中没有学生列表数据
+                if(studentList==null){
+                    //就查询数据库获取学生列表，并放入缓存中
+                    studentList=t_studentMapper.getStudents();
+                    redisTemplate.opsForValue().set("allStudents",studentList);
+                    System.out.println("查询的数据库....");
+                }else{
+                    System.out.println("查询的缓存....");
+                }
+            }
+        }else{
+            System.out.println("查询的缓存....");
         }
+
         return studentList;
     }
 
