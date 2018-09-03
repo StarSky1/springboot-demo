@@ -82,6 +82,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
+		<!-- 添加lombok依赖，该工具可以让javabean的getter、setter、no parameter constructor、equals、toString、hashCode自动生成 -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.16.10</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
