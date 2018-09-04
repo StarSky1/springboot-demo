@@ -12,7 +12,7 @@ spring:
   http:
       encoding:
           chaset: utf-8
-          enabled: true
+          enabled: true  #default true
           force: true
   #配置(数据源)数据库连接配置
   datasource:
