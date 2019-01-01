@@ -34,6 +34,10 @@ spring:
 #配置mybatis映射文件所在路径
 mybatis:
   mapper-locations: classpath:com/yj/springbootdemo/mapper/*.xml
+#mybatis mapper类执行sql语句时，打印sql日志
+logging:
+  level:
+     com.yj.springbootdemo.dao : debug
 
 
 boot:
